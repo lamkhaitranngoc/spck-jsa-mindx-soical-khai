@@ -1,96 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Facebook UI</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- Header / Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary custom-navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">MiniFacebook</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" aria-controls="navbarNav" 
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a href="index.html" class="btn btn-outline-light me-2">Trang Chủ</a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <form class="d-flex ms-auto me-3">
-          <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-          <button class="btn btn-light" type="submit">Search</button>
+  <head>
+    <title>MiniFacebook</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand text-primary fw-bold" href="#">MiniFacebook</a>
+        <form class="d-flex mx-auto" style="max-width:400px;">
+          <input class="form-control rounded-pill" type="search" placeholder="Tìm kiếm..." />
         </form>
-        <div class="d-flex">
-          <a href="login.html" class="btn btn-outline-light me-2">Đăng nhập</a>
-          <a href="register.html" class="btn btn-warning">Đăng ký</a>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <!-- Đây là nơi JS sẽ thay đổi thành Xin chào + Đăng xuất -->
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Đăng nhập</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Đăng ký</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Layout -->
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Sidebar trái -->
+        <div class="col-md-3 d-none d-md-block">
+          <div class="list-group shadow-sm">
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Trang cá nhân</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Bạn bè</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-video"></i> Video</a>
+          </div>
+        </div>
+
+        <!-- Feed giữa -->
+        <div class="col-md-6">
+          
+          <!-- Ô tạo bài đăng -->
+<div class="card mb-3 shadow-sm">
+  <div class="card-body">
+    <form id="postForm">
+      <div class="d-flex mb-2">
+        <img src="https://i.pravatar.cc/40?u=me" class="rounded-circle me-2">
+        <input type="text" id="postContent" class="form-control rounded-pill" placeholder="Bạn đang nghĩ gì?" required>
+      </div>
+      <div class="mt-2">
+        <input type="file" id="postImage" class="form-control" accept="image/*">
+      </div>
+      <div class="d-flex justify-content-end mt-2">
+        <button type="submit" class="btn btn-primary">Đăng bài</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Khu vực hiển thị bài viết mới -->
+<div id="feed"></div>
+
+
+          <!-- Một bài đăng -->
+          <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://i.pravatar.cc/40?img=1" class="rounded-circle me-2">
+                <strong>Nguyễn Văn A</strong>
+              </div>
+              <p>Hôm nay trời thật đẹp 🌞</p>
+              <img src="https://picsum.photos/600/300?random=1" class="img-fluid rounded mb-2">
+              <div class="d-flex justify-content-between text-muted small">
+                <span><i class="fa-solid fa-thumbs-up text-primary"></i> 120</span>
+                <span>45 bình luận</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-around">
+                <button class="btn btn-light"><i class="fa-solid fa-thumbs-up"></i> Like</button>
+                <button class="btn btn-light"><i class="fa-solid fa-comment"></i> Comment</button>
+                <button class="btn btn-light"><i class="fa-solid fa-share"></i> Share</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar phải -->
+        <div class="col-md-3 d-none d-md-block">
+          <div class="card shadow-sm">
+            <div class="card-header fw-bold">Gợi ý kết bạn</div>
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://i.pravatar.cc/40?img=5" class="rounded-circle me-2">
+                <span>Phạm Văn C</span>
+                <button class="btn btn-sm btn-primary ms-auto">Thêm bạn</button>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://i.pravatar.cc/40?img=6" class="rounded-circle me-2">
+                <span>Lê Thị D</span>
+                <button class="btn btn-sm btn-primary ms-auto">Thêm bạn</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Main -->
-  <main class="container mt-4">
-  <!-- Bài đăng 1 -->
-  <div class="card post-card mb-3">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <img src="" class="" alt="">
-        <strong>Nguyễn Văn A</strong>
-      </div>
-      <p>Hôm nay trời thật đẹp, đi dạo quanh hồ Tây thấy rất thoải mái 🌞</p>
-      <img src="https://picsum.photos/600/300?random=1" class="img-fluid rounded" alt="post image">
-      <div class="mt-3 d-flex justify-content-around">
-        <button class="btn btn-primary btn-lg">
-          <i class="fa-solid fa-heart fa-lg"></i> Love
-        </button>
-        <button class="btn btn-danger btn-lg">
-          <i class="fa-solid fa-thumbs-up fa-lg"></i> Like
-        </button>
-        <button class="btn btn-secondary btn-lg">
-          <i class="fa-solid fa-comment fa-lg"></i> Comment
-        </button>
-      </div>
-    </div>
-  </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Bài đăng 2 -->
-  <div class="card post-card mb-3">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <img src="" class="" alt="">
-        <strong>Trần Thị B</strong>
-      </div>
-      <p>Vừa thử quán cà phê mới mở ở Hà Nội, không gian rất chill ☕✨</p>
-      <img src="https://picsum.photos/600/300?random=2" class="img-fluid rounded" alt="post image">
-      <div class="mt-3 d-flex justify-content-around">
-        <button class="btn btn-primary btn-lg">
-          <i class="fa-solid fa-heart fa-lg"></i> Love
-        </button>
-        <button class="btn btn-danger btn-lg">
-          <i class="fa-solid fa-thumbs-up fa-lg"></i> Like
-        </button>
-        <button class="btn btn-secondary btn-lg">
-          <i class="fa-solid fa-comment fa-lg"></i> Comment
-        </button>
-      </div>
-    </div>
-  </div>
-</main>
+    <!-- index.js -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const navBar = document.querySelector("#navbarNav .navbar-nav:last-child") || document.querySelector(".navbar-nav.ms-auto");
+        const user = JSON.parse(localStorage.getItem("user"));
 
+        if (user) {
+          navBar.innerHTML = "";
 
-  <!-- Footer -->
-  <footer class="footer mt-4">
-    <p>&copy; 2025 MiniFacebook - Demo giao diện bằng Bootstrap 5</p>
-  </footer>
+          const gmailName = user.email.split("@")[0];
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+          const helloItem = document.createElement("li");
+          helloItem.classList.add("nav-item");
+          helloItem.innerHTML = `<span class="nav-link">Xin chào, <strong>${gmailName}</strong></span>`;
+
+          const logoutItem = document.createElement("li");
+          logoutItem.classList.add("nav-item");
+          const logoutLink = document.createElement("a");
+          logoutLink.classList.add("nav-link", "text-danger");
+          logoutLink.href = "#";
+          logoutLink.textContent = "Đăng xuất";
+
+          logoutLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+          });
+
+          logoutItem.appendChild(logoutLink);
+          navBar.appendChild(helloItem);
+          navBar.appendChild(logoutItem);
+        }
+      });
+    </script>
+  </body>
 </html>

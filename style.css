@@ -41,14 +41,5 @@ body {
   margin-top: 20px;       /* tạo khoảng cách với ảnh/caption */
 }
 
-.post-card .btn {
-  font-size: 0.9rem;      /* chữ nhỏ hơn */
-  padding: 6px 12px;      /* nút gọn hơn */
-  border-radius: 6px;
-}
 
-.post-card .btn i {
-  font-size: 1rem;        /* icon nhỏ hơn */
-  margin-right: 4px;
-}
 

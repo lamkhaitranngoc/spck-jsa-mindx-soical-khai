@@ -4,7 +4,6 @@
     <title>MiniFacebook</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
@@ -14,13 +13,16 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand text-primary fw-bold" href="#">MiniFacebook</a>
+        <a class="navbar-brand text-primary fw-bold" href="index.html">MiniFacebook</a>
         <form class="d-flex mx-auto" style="max-width:400px;">
           <input class="form-control rounded-pill" type="search" placeholder="Tìm kiếm..." />
         </form>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#"><i class="fa-solid fa-house"></i></a>
+            <a class="nav-link text-primary" href="index.html"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-success" href="create_post.html"><i class="fa-solid fa-pen"></i> Đăng bài</a>
           </li>
           <!-- Đây là nơi JS sẽ thay đổi thành Xin chào + Đăng xuất -->
           <li class="nav-item">
@@ -36,45 +38,15 @@
     <!-- Layout -->
     <div class="container mt-4">
       <div class="row">
-        <!-- Sidebar trái -->
-        <div class="col-md-3 d-none d-md-block">
-          <div class="list-group shadow-sm">
-            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-user"></i> Trang cá nhân</a>
-            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Bạn bè</a>
-            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-video"></i> Video</a>
-          </div>
-        </div>
+        <!-- Feed giữa căn giữa -->
+        <div class="col-md-6 mx-auto">
+          <!-- Khu vực hiển thị bài viết mới -->
+          <div id="feed"></div>
 
-        <!-- Feed giữa -->
-        <div class="col-md-6">
-          
-          <!-- Ô tạo bài đăng -->
-<div class="card mb-3 shadow-sm">
-  <div class="card-body">
-    <form id="postForm">
-      <div class="d-flex mb-2">
-        <img src="https://i.pravatar.cc/40?u=me" class="rounded-circle me-2">
-        <input type="text" id="postContent" class="form-control rounded-pill" placeholder="Bạn đang nghĩ gì?" required>
-      </div>
-      <div class="mt-2">
-        <input type="file" id="postImage" class="form-control" accept="image/*">
-      </div>
-      <div class="d-flex justify-content-end mt-2">
-        <button type="submit" class="btn btn-primary">Đăng bài</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- Khu vực hiển thị bài viết mới -->
-<div id="feed"></div>
-
-
-          <!-- Một bài đăng -->
+          <!-- Một bài đăng mẫu -->
           <div class="card mb-3 shadow-sm">
             <div class="card-body">
               <div class="d-flex align-items-center mb-2">
-                <img src="https://i.pravatar.cc/40?img=1" class="rounded-circle me-2">
                 <strong>Nguyễn Văn A</strong>
               </div>
               <p>Hôm nay trời thật đẹp 🌞</p>
@@ -99,12 +71,10 @@
             <div class="card-header fw-bold">Gợi ý kết bạn</div>
             <div class="card-body">
               <div class="d-flex align-items-center mb-2">
-                <img src="https://i.pravatar.cc/40?img=5" class="rounded-circle me-2">
                 <span>Phạm Văn C</span>
                 <button class="btn btn-sm btn-primary ms-auto">Thêm bạn</button>
               </div>
               <div class="d-flex align-items-center mb-2">
-                <img src="https://i.pravatar.cc/40?img=6" class="rounded-circle me-2">
                 <span>Lê Thị D</span>
                 <button class="btn btn-sm btn-primary ms-auto">Thêm bạn</button>
               </div>
@@ -116,40 +86,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- index.js -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const navBar = document.querySelector("#navbarNav .navbar-nav:last-child") || document.querySelector(".navbar-nav.ms-auto");
-        const user = JSON.parse(localStorage.getItem("user"));
-
-        if (user) {
-          navBar.innerHTML = "";
-
-          const gmailName = user.email.split("@")[0];
-
-          const helloItem = document.createElement("li");
-          helloItem.classList.add("nav-item");
-          helloItem.innerHTML = `<span class="nav-link">Xin chào, <strong>${gmailName}</strong></span>`;
-
-          const logoutItem = document.createElement("li");
-          logoutItem.classList.add("nav-item");
-          const logoutLink = document.createElement("a");
-          logoutLink.classList.add("nav-link", "text-danger");
-          logoutLink.href = "#";
-          logoutLink.textContent = "Đăng xuất";
-
-          logoutLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            localStorage.removeItem("user");
-            window.location.href = "login.html";
-          });
-
-          logoutItem.appendChild(logoutLink);
-          navBar.appendChild(helloItem);
-          navBar.appendChild(logoutItem);
-        }
-      });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>

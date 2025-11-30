@@ -28,7 +28,6 @@
           });
         }
 
-        // Hiển thị bài viết từ localStorage
         const feed = document.getElementById("feed");
         const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
